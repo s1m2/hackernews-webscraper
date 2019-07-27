@@ -1,0 +1,25 @@
+{
+  "name": "hackernews",
+  "version": "1.0.0",
+  "description": "Hackernews web scraper",
+  "main": "scraper.js",
+  "scripts": {
+    "install-hackernews": "npm link && npm i -g",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Sam Macharia",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "cheerio": "^1.0.0-rc.3",
+    "commander": "^2.20.0"
+  },
+  "repository" : {
+    "type": "git",
+    "url": "https://github.com/s1m2/hackernews-webscraper.git"
+  },
+  "bin": {
+    "hackernews": "./scraper.js"
+  }
+}
