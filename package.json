@@ -4,7 +4,7 @@
   "description": "Hackernews web scraper",
   "main": "scraper.js",
   "scripts": {
-    "install-hackernews": "npm link && npm i -g",
+    "hackernews-install": "npm link && npm i -g",
     "test": "jest"
   },
   "keywords": [],
