@@ -66,7 +66,7 @@ const getAllHTML = async (uri, posts) => {
         currentPageNumber += 1;
     }
 
-    extractHTML(html, posts);
+    return extractHTML(html, posts);
 }
 
 /*
@@ -123,7 +123,7 @@ const stringChecker = input => {
 */
 
 const uriChecker = uri => {
-    let regex = /(^(([^:\/?#]+):)?(\/\/([^\/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?)/
+    let regex = /((?<=\()[A-Za-z][A-Za-z0-9\+\.\-]*:([A-Za-z0-9\.\-_~:/\?#\[\]@!\$&'\(\)\*\+,;=]|%[A-Fa-f0-9]{2})+(?=\)))|([A-Za-z][A-Za-z0-9\+\.\-]*:([A-Za-z0-9\.\-_~:/\?#\[\]@!\$&'\(\)\*\+,;=]|%[A-Fa-f0-9]{2})+)/
     return regex.test(uri) ? uri : 'invalid uri';
 }
 
@@ -144,4 +144,15 @@ program
 
 
 program.parse(process.argv)
+
+module.exports = {
+    getPages,
+    getHTML,
+    getPageNumber,
+    extractHTML,
+    getAllHTML,
+    stringChecker,
+    uriChecker,
+    pointsChecker
+}
 

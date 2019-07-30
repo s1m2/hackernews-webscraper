@@ -5,7 +5,7 @@
   "main": "scraper.js",
   "scripts": {
     "install-hackernews": "npm link && npm i -g",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [],
   "author": "Sam Macharia",
@@ -15,11 +15,14 @@
     "cheerio": "^1.0.0-rc.3",
     "commander": "^2.20.0"
   },
-  "repository" : {
+  "repository": {
     "type": "git",
     "url": "https://github.com/s1m2/hackernews-webscraper.git"
   },
   "bin": {
     "hackernews": "./scraper.js"
+  },
+  "devDependencies": {
+    "jest": "^24.8.0"
   }
 }
