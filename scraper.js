@@ -135,6 +135,11 @@ const pointsChecker = points => {
     return (points && parseInt(points) >= 0) ? parseInt(points) : 0;
 }
 
+/*
+    This allows us to ran thr program from the cli and customize the flags we can use.
+    It also captures the number of posts andd passes it to the getAllHTML function
+*/
+
 program
     .version('1.0.0')
     .option('-p, --posts', 'Enter number of posts')
