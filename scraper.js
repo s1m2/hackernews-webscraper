@@ -78,18 +78,31 @@ const getAllHTML = async (uri, posts) => {
 
 const extractHTML = (html, posts) => {
 
-    const allPosts = [];
+    const data = [];
+
+    const ROW_SELECTOR = 'tr.athing';
+
     let $ = cheerio.load(html);
 
-    $('tr.athing').each((i, post) => {
-        let title = $(post).find('td.title > a').text();
-        let uri = $(post).find('td.title > a').attr('href');
-        let rank = $(post).find('.rank').text();
-        let author = $(post).next().find('.subtext > .hnuser').text();
-        let points = $(post).next().find('.subtext > .score').text();
-        let comments = $(post).next().find('.subtext > a:nth-child(6)').text();
+    const grabRowData = (row,selector) => $(row)
+        .find(selector)
+        .text()
 
-        let obj = {
+    const grabNextRowData = (row, selector) => $(row)
+        .next()
+        .find(selector)
+        .text()
+
+    $(ROW_SELECTOR).each((i, item) => {
+        
+        let title = grabRowData(item, 'td.title > a')
+        let uri = $(item).find('td.title > a').attr('href');
+        let rank = grabRowData(item, '.rank');
+        let author = grabNextRowData(item, '.subtext > .hnuser');
+        let points = grabNextRowData(item, '.subtext > .score');
+        let comments = grabNextRowData(item, '.subtext > a:nth-child(6)');
+
+        let post = {
             title: stringChecker(title),
             uri: uriChecker(uri),
             author: stringChecker(author),
@@ -98,14 +111,14 @@ const extractHTML = (html, posts) => {
             rank: parseInt(rank)
         }
 
-        if (obj.rank <= posts) {
-            allPosts.push(obj);
+        if (post.rank <= posts) {
+            data.push(post);
         } 
     });
 
-    console.log(allPosts);
+    console.log(data);
 
-    return allPosts;
+    return data;
 }
 
 /*
